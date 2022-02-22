@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}KGB Interface{% endblock %}
+
+{% block body %}
+    <div class=" row justify-content-center text-center mt-5">
+        <div class"col-auto">
+        <h1 class="text-white mb-5">Liste des Agents</h1>
+
+        <div class="container  d-flex justify-content-center">
+            <div class="table-responsive ">
+                <table class="tftable table text-white">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>PRENOM</th>
+                        <th>NOM</th>
+                        <th>DATE DE NAISSANCE</th>
+                        <th>NOM DE CODE</th>
+                        <th>PAYS D'ORIGINE</th>
+                        <th>ACTIONS</th>
+                    </tr>
+                    </thead>
+                    <tbody>{% for agent in agents %}
+                        <tr>
+                            <td>{{ agent.id }}</td>
+                            <td>{{ agent.firstname }}</td>
+                            <td>{{ agent.lastname}}</td>
+                            <td>{{ agent.dateofbith | date ('d/m/Y')}}</td>
+                            <td>{{ agent.idcode }}</td>
+                            <td>{{ agent.country}}</td>
+                            <td><a class="button1 mb-2" href="{{ path('agentsdetails', {'id':agent.id}) }}">INFORMATIONS</a>
+                                {% if app.user %}
+                                <a href="{{ path ('agent_modify', {'id':agent.id}) }}" class="button2 mb-2">MODIFIER</a>
+                                {{ include('agentsdetails/delete_form.html.twig') }}
+                                {% endif %}</td>
+                        </tr> {% endfor %}
+                    </tbody></table>
+            </div>
+
+        </div>
+        {% if app.user %}
+            <a href="{{ path ('agent_add') }}" class="button4">AJOUTER UN AGENT</a>
+        {% endif %}
+        {% endblock %}

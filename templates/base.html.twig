@@ -14,6 +14,96 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+    <style>.button {
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            padding: 12px 24px;
+            border: 1px solid #00a7b3;
+            border-radius: 8px;
+            background: #00ffff;
+            background: -webkit-gradient(linear, left top, left bottom, from(#00ffff), to(#00a7b3));
+            background: -moz-linear-gradient(top, #00ffff, #00a7b3);
+            background: linear-gradient(to bottom, #00ffff, #00a7b3);
+            text-shadow: #007780 1px 1px 1px;
+            font: normal normal bold 14px courier new;
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .button:hover,
+        .button:focus {
+            border: 1px solid #00eeff;
+            background: #00ffff;
+            background: -webkit-gradient(linear, left top, left bottom, from(#00ffff), to(#00c8d7));
+            background: -moz-linear-gradient(top, #00ffff, #00c8d7);
+            background: linear-gradient(to bottom, #00ffff, #00c8d7);
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .button:active {
+            background: #00a7b3;
+            background: -webkit-gradient(linear, left top, left bottom, from(#00a7b3), to(#00a7b3));
+            background: -moz-linear-gradient(top, #00a7b3, #00a7b3);
+            background: linear-gradient(to bottom, #00a7b3, #00a7b3);
+        }
+    </style>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand"  href="{{ path('home') }}"><img src="https://zupimages.net/up/22/07/egi4.png" alt="Logo HTML w3" style="width:200px; height:auto" class="float-left" ></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            {% if app.user %}
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('home') }}">Accueil
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('agents') }}">Agents</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('targets') }}">Cibles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('contacts') }}">Contacts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('hidingplaces') }}">Refuges</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('skills') }}">Compétences</a>
+                    </li>
+
+                </ul>
+                {% else %}
+                    <div class="text-white fw-bold row justify-content-center text-center">Bienvenue sur l'interface de planification des missions</div>
+                {% endif %}
+                {% if app.user %}
+                <a href="{{ path('app_logout') }}" class="button ">DECONNECTION</a>
+                {% else %}
+                <a href="{{ path('app_login') }}" class="button ">CONNECTION</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+        <div class="container col-6">
+            <div class="col-auto">
+                {% for message in app.flashes('error') %}
+                <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% block body %}
+        {% endblock %}
     </body>
 </html>

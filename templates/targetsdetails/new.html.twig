@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} KGB - Ajouter une Cible {% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Nouvelle cible</h1>
+
+    {{ include('targetsdetails/form.html.twig', {'button_label': ''}) }}
+{% endblock %}

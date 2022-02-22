@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}KGB Interface{% endblock %}
+
+{% block body %}
+<div class=" row justify-content-center text-center mt-5">
+    <div class"col-auto">
+    <h1 class="text-white mb-5">Détails de mission</h1>
+
+    <div class="container" >
+        <div class="table-responsive ">
+                <table class="tftable" >
+                 <tbody>
+                <tr><td class="fw-bold premiereligne">NOM MISSION</td><td class="premiereligne">{{ missions.title }}</td></tr>
+                <tr><td class="fw-bold">DESCRIPTION</td><td>{{ missions.description }}</td></tr>
+                <tr><td class="fw-bold">NOM DE CODE</td><td>{{ missions.codename}}</td></tr>
+                <tr><td class="fw-bold">DATE DE DEBUT</td><td>{{ missions.startdate | date ('d / m /Y')}}</td></tr>
+                <tr><td class="fw-bold">DATE DE FIN</td><td>{{ missions.enddate | date ('d / m /Y')}}</td></tr>
+                <tr><td class="fw-bold">TYPE DE MISSION</td><td>{{ missions.missiontype}}</td></tr>
+                <tr><td class="fw-bold">COMPETENCE REQUISE</td><td>{{ missions.skill}}</td></tr>
+                <tr><td class="fw-bold">STATUT DE LA MISSION</td><td>{{ missions.statusmission}}</td></tr>
+                   </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div>
+    <div class="container mt-2 d-flex justify-content-center">
+        <a href="{{ path('home') }}" class="button1">RETOUR</a></div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}KGB Interface{% endblock %}
+
+{% block body %}
+    <div class=" row justify-content-center text-center mt-5">
+        <div class="col-auto">
+        <h1 class="text-white mb-5">Liste des Contacts</h1>
+            <div class="container  d-flex justify-content-center">
+            <div class="table-responsive">
+                <table class="tftable table text-white">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>PRENOM</th>
+                        <th>NOM</th>
+                        <th>DATE DE NAISSANCE</th>
+                        <th>SURNOM</th>
+                        <th>PAYS D'ORIGINE</th>
+                        <th>ACTIONS</th>
+                    </tr>
+                    </thead>
+                    <tbody>{% for contact in contacts %}
+                        <tr>
+                            <td>{{ contact.id }}</td>
+                            <td>{{ contact.firstname }}</td>
+                            <td>{{ contact.lastname}}</td>
+                            <td>{{ contact.dateofbirth | date ('d/m/Y')}}</td>
+                            <td>{{ contact.codename }}</td>
+                            <td>{{ contact.country}}</td>
+                            <td><a class="button1" href="{{ path('contactsdetails', {'id':contact.id}) }}">INFORMATIONS</a>
+                                {% if app.user %}
+                                    <a href="{{ path ('contact_modify', {'id':contact.id}) }}" class="button2 mb-2">MODIFIER</a>
+                                    {{ include('contactsdetails/delete_form.html.twig') }}
+                                {% endif %}</td>
+                        </tr> {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            </div>{% if app.user %}
+            <a href="{{ path ('contact_add') }}" class="button4">AJOUTER UN CONTACT</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

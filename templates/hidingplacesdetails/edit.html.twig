@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} KGB - Modifier le refuge : {{ hidingplaces.id }}{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Modifier le refuge : {{ hidingplaces.id }}</h1>
+
+    {{ include('hidingplacesdetails/form.html.twig', {'button_label': 'Modifier'}) }}
+
+{% endblock %}

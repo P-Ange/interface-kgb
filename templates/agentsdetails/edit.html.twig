@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} KGB - Modifier les Agents : {{agents.id }}{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Modifier l'Agent : {{ agents.id }}</h1>
+
+    {{ include('agentsdetails/form.html.twig', {'button_label': 'Modifier'}) }}
+
+{% endblock %}

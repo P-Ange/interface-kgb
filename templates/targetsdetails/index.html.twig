@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}KGB Interface{% endblock %}
+
+{% block body %}
+    <div class=" row justify-content-center text-center mt-5">
+        <div class"col-auto">
+        <h1 class="text-white mb-5">Détails de la cible</h1>
+
+        <div class="container  d-flex justify-content-center" >
+            <div class="table-responsive ">
+                <table class="tftable" >
+                    <tbody>
+                    <tr><td class="premiereligne fw-bold">ID</td><td class="premiereligne">{{ targets.id }}</td></tr>
+                    <tr><td class="fw-bold">PRENOM</td><td>{{ targets.firstname }}</td></tr>
+                    <tr><td class="fw-bold">NOM</td><td>{{ targets.lastname}}</td></tr>
+                    <tr><td class="fw-bold">DATE DE NAISSANCE</td><td>{{ targets.dateofbirth | date ('d/m/Y')}}</td></tr>
+                    <tr><td class="fw-bold">NOM DE CODE</td><td>{{ targets.alias }}</td></tr>
+                    <tr><td class="fw-bold">PAYS D'ORIGINE</td><td>{{ targets.country}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <div class="container mt-2 d-flex justify-content-center">
+        <a href="{{ path('targets') }}" class="button1">RETOUR</a></div>
+{% endblock %}
